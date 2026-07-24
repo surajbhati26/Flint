@@ -141,6 +141,7 @@ with tab2:
                 st.markdown(f"**Q{i} ({q['type']})**")
                 st.write(q["question"])
                 if q["options"] != "N/A":
+
                     st.write(q["options"])
                 with st.expander("Show model answer"):
                     st.write(q["answer"])
