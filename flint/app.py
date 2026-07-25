@@ -18,14 +18,67 @@ import streamlit as st
 import assessment_engine
 import file_utils
 import config
+import requests
+from streamlit_lottie import st_lottie
 
 # ------------------------------------------------------------
 # BASIC PAGE SETUP
 # ------------------------------------------------------------
-st.set_page_config(page_title="EducatorAssessmentPro", layout="wide")
+st.set_page_config(page_title="Educator Assessment Pro", layout="wide")
 
-st.title("📚 EducatorAssessmentPro")
+st.markdown("""
+<style>
+    /* Add a glowing gradient to the main button */
+    div.stButton > button:first-child {
+        background: linear-gradient(90deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 24px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        transition: 0.3s;
+        font-weight: bold;
+    }
+    
+    /* Make the button lift up slightly when the mouse hovers over it */
+    div.stButton > button:first-child:hover {
+        transform: translateY(-2px);
+        box-shadow: 0px 6px 15px rgba(0,212,255,0.4);
+    }
+    
+    /* Clean up the text input boxes */
+    div[data-baseweb="input"] > div {
+        background-color: #1c2331;
+        border: 1px solid #4364F7;
+        border-radius: 5px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+st.title("📚 Educator Assessment Pro")
 st.caption("An AI-powered assistant that helps educators create and grade assessments faster.")
+
+import requests
+from streamlit_lottie import st_lottie
+
+# 1. Safely request the animation from the internet
+def load_lottieurl(url: str):
+    try:
+        r = requests.get(url)
+        if r.status_code != 200:
+            return None
+        return r.json()
+    except Exception:
+        # If the internet drops or the link breaks, fail silently
+        return None
+
+# 2. A permanent, verified Lottie JSON link
+lottie_anim = load_lottieurl("https://lottie.host/80517540-3949-4171-9dfc-60db2a4e2343/WkIiv2dFm0.json") 
+# (You can always swap the URL inside the quotes later if you find one you like more!)
+
+# 3. The Failsafe: Only draw the animation if it successfully downloaded!
+if lottie_anim is not None:
+    st_lottie(lottie_anim, height=250, key="header_animation")
 
 # ------------------------------------------------------------
 # SESSION STATE SETUP
