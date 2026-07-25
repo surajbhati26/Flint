@@ -1,8 +1,4 @@
-# requirements.txt
-# This file lists every external library our app needs.
-# Anyone (or any computer) can run "pip install -r requirements.txt"
-# and it will automatically download and install all of these for us.
-
-streamlit==1.38.0
-google-generativeai==0.8.3
-PyPDF2==3.0.1s
+streamlit
+google-generativeai
+python-dotenv
+PyPDF2
