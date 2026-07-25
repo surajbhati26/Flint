@@ -1,17 +1,4 @@
-# ai_prompts.py
-# ------------------------------------------------------------
-# WHAT THIS FILE DOES:
-# This file stores all our "prompts" — the written instructions we
-# send to the AI model. Think of a prompt like a very detailed recipe
-# card you hand to a chef (the AI): the clearer and more specific the
-# recipe, the better the dish (the AI's answer) turns out.
-#
-# WHY WE DO THIS:
-# Keeping every prompt in ONE file makes it easy to tweak the AI's
-# behavior later without digging through the rest of the app's logic.
-# This is a very common and beginner-friendly pattern called
-# "prompt engineering separation."
-# ------------------------------------------------------------
+
 
 
 def build_topic_extraction_prompt(document_text):
