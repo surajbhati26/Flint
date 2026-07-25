@@ -15,14 +15,46 @@
 # ------------------------------------------------------------
 
 import streamlit as st
+import streamlit.components.v1 as components
 import assessment_engine
 import file_utils
 import config
+import os
 
 # ------------------------------------------------------------
 # BASIC PAGE SETUP
 # ------------------------------------------------------------
 st.set_page_config(page_title="EducatorAssessmentPro", layout="wide")
+
+# ------------------------------------------------------------
+# VERCEL SPEED INSIGHTS INTEGRATION
+# WHAT: Vercel Speed Insights tracks page performance metrics.
+# HOW: We inject the Speed Insights JavaScript code using Streamlit's
+# components.html() function. This requires the app to be deployed on
+# Vercel and have Speed Insights enabled in the Vercel dashboard.
+# ------------------------------------------------------------
+def inject_speed_insights():
+    """
+    Injects Vercel Speed Insights tracking code into the Streamlit app.
+    This will only work when deployed on Vercel with Speed Insights enabled.
+    The VERCEL_ANALYTICS_ID environment variable is automatically set by Vercel.
+    """
+    vercel_analytics_id = os.environ.get('VERCEL_ANALYTICS_ID', '')
+    
+    if vercel_analytics_id:
+        # Inject Speed Insights script using the vanilla JS approach
+        speed_insights_script = f"""
+        <script>
+            window.si = window.si || function () {{ 
+                (window.siq = window.siq || []).push(arguments); 
+            }};
+        </script>
+        <script defer src="/_vercel/speed-insights/script.js"></script>
+        """
+        components.html(speed_insights_script, height=0, width=0)
+
+# Initialize Speed Insights
+inject_speed_insights()
 
 st.title("📚 EducatorAssessmentPro")
 st.caption("An AI-powered assistant that helps educators create and grade assessments faster.")
